@@ -29,6 +29,6 @@ Vagrant.configure("2") do |config|
       curl
     cd /usr/local/bin \
       && wget https://raw.githubusercontent.com/aggresss/dotfiles/master/update_dotfiles.sh \
-      && chmod +x update_dotfiles.sh
+      && chmod 755 update_dotfiles.sh
   SHELL
 end
