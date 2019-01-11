@@ -26,7 +26,11 @@ Vagrant.configure("2") do |config|
       git \
       vim \
       wget \
-      curl
+      curl \
+      m4 \
+      autoconf \
+      automake \
+      libtool
     wget -P /usr/local/bin https://github.com/aggresss/dotfiles/raw/master/update_dotfiles.sh \
       && chmod 755 /usr/local/bin/update_dotfiles.sh
   SHELL
