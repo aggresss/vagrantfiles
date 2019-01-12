@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
       vim \
       wget \
       curl \
-      m4 \
+      cmake \
       autoconf \
       automake \
       libtool
