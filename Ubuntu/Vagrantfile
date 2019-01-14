@@ -21,68 +21,71 @@ Vagrant.configure("2") do |config|
     end
   end
   # provision
-  config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
-    sudo apt-get install -y \
-      software-properties-common \
-      sudo \
-      cron \
-      xclip \
-      man \
-      tree \
-      psmisc \
-      curl \
-      wget \
-      rsync \
-      vim \
-      exuberant-ctags \
-      cscope \
-      ssh \
-      mosh \
-      openssh-server \
-      git \
-      ca-certificates \
-      bc \
-      jq \
-      cpio \
-      unzip \
-      xz-utils \
-      p7zip-full \
-      hexedit \
-      tmux \
-      build-essential \
-      gdb \
-      gdbserver \
-      automake \
-      libtool \
-      cmake \
-      ccache \
-      python \
-      python3 \
-      pkg-config \
-      flex \
-      bison \
-      nasm \
-      yasm \
-      gawk \
-      net-tools \
-      iputils-ping \
-      netcat \
-      socat \
-      x11-apps \
-      python-dev \
-      python3-dev \
-      virtualenv \
-      unrar \
-      gcc-multilib \
-      lib32ncurses5-dev \
-      lib32z1 \
-      valgrind \
-      ffmpeg \
-      nginx \
-      mosquitto \
-      mosquitto-clients
-    wget -P /usr/local/bin https://github.com/aggresss/dotfiles/raw/master/update_dotfiles.sh \
-      && chmod 755 /usr/local/bin/update_dotfiles.sh
-  SHELL
+  config.vm.provision "shell", inline: $shell
 end
+
+$shell = <<-'CONTENTS'
+sudo apt-get update
+sudo apt-get install -y \
+  software-properties-common \
+  sudo \
+  cron \
+  xclip \
+  man \
+  tree \
+  psmisc \
+  curl \
+  wget \
+  rsync \
+  vim \
+  exuberant-ctags \
+  cscope \
+  ssh \
+  mosh \
+  openssh-server \
+  git \
+  ca-certificates \
+  bc \
+  jq \
+  cpio \
+  unzip \
+  xz-utils \
+  p7zip-full \
+  hexedit \
+  tmux \
+  build-essential \
+  gdb \
+  gdbserver \
+  automake \
+  libtool \
+  cmake \
+  ccache \
+  python \
+  python3 \
+  pkg-config \
+  flex \
+  bison \
+  nasm \
+  yasm \
+  gawk \
+  net-tools \
+  iputils-ping \
+  netcat \
+  socat \
+  x11-apps \
+  python-dev \
+  python3-dev \
+  virtualenv \
+  unrar \
+  gcc-multilib \
+  lib32ncurses5-dev \
+  lib32z1 \
+  valgrind \
+  ffmpeg \
+  nginx \
+  mosquitto \
+  mosquitto-clients
+wget -P /usr/local/bin https://github.com/aggresss/dotfiles/raw/master/update_dotfiles.sh \
+  && chmod 755 /usr/local/bin/update_dotfiles.sh
+CONTENTS
+
