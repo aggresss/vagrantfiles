@@ -1,0 +1,90 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Vagrantfile for Ubuntu
+Vagrant.configure("2") do |config|
+  # ssh
+  config.ssh.forward_x11 = true
+  # hostname
+  config.vm.hostname = "ubuntu-xenial32"
+  # box
+  config.vm.box = "ubuntu/xenial32"
+  config.vm.box_check_update = false
+  # synced folder
+  config.vm.synced_folder "../shared", "/mnt/shared"
+  # network
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
+  # provider
+  ["virtualbox", "hyperv"].each do |provider|
+    config.vm.provider provider do |v, override|
+      v.memory = "1024"
+      v.cpus = "2"
+    end
+  end
+  # provision
+  config.vm.provision "shell", inline: $shell
+end
+
+$shell = <<-'CONTENTS'
+sudo apt-get update
+sudo apt-get install -y \
+  software-properties-common \
+  sudo \
+  cron \
+  xclip \
+  man \
+  tree \
+  psmisc \
+  curl \
+  wget \
+  rsync \
+  vim \
+  exuberant-ctags \
+  cscope \
+  ssh \
+  mosh \
+  openssh-server \
+  git \
+  ca-certificates \
+  bc \
+  jq \
+  cpio \
+  unzip \
+  xz-utils \
+  p7zip-full \
+  hexedit \
+  tmux \
+  build-essential \
+  gdb \
+  gdbserver \
+  automake \
+  libtool \
+  cmake \
+  ccache \
+  python \
+  python3 \
+  pkg-config \
+  flex \
+  bison \
+  nasm \
+  yasm \
+  gawk \
+  net-tools \
+  iputils-ping \
+  netcat \
+  socat \
+  x11-apps \
+  python-dev \
+  python3-dev \
+  virtualenv \
+  unrar \
+  gcc-multilib \
+  libncurses5-dev \
+  valgrind \
+  ffmpeg \
+  nginx \
+  mosquitto \
+  mosquitto-clients
+wget -P /usr/local/bin https://github.com/aggresss/dotfiles/raw/master/update_dotfiles.sh \
+  && chmod 755 /usr/local/bin/update_dotfiles.sh
+CONTENTS
+
